@@ -88,7 +88,7 @@ def main():
             t1.start()
             ts.start()
          except:
-            print('昵称错误，请重新正确输入')
+            print('昵称错误，请正确输入')
 
 if __name__ == '__main__':
     main()
