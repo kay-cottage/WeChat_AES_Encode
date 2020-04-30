@@ -4,6 +4,8 @@ from Crypto.Cipher import AES
 from binascii import b2a_hex, a2b_hex
 import hashlib
 
+
+
 #微信接收，解密函数
 @itchat.msg_register(itchat.content.TEXT)
 def recv(msg):
@@ -15,6 +17,7 @@ def recv(msg):
 
 def run():
     itchat.run()
+
 
 #消息处理函数
 def add_to_16(text):
@@ -35,7 +38,7 @@ def encrypt(text,key):
     return b2a_hex(cipher_text)
 
 
-# 解密后，去掉补足的空格用strip() 去掉
+# 解密后函数
 def decrypt(c,key):
     mode = AES.MODE_ECB
     cryptor = AES.new(key, mode)
@@ -62,7 +65,7 @@ def main():
     print('')
     print('#####################################################################')
     print('《《《为可发送状态')
-    print('xxxxxx》》》《《《表示好友消息')
+    print('》》》表示好友消息')
     print('#####################################################################')
     print('')
     print('以下请正确输入与好友约定的密钥')
@@ -75,15 +78,17 @@ def main():
     b = hashlib.sha256(a).hexdigest()
     c = hashlib.sha256(b.encode("utf8")).hexdigest()
     key = c[6:38].encode('utf8')
-    friend = input('请输入好友昵称：')
-    info = itchat.search_friends(nickName=friend)
-    id = info[0]['UserName']
-    t1 = Thread(target=send)
-    ts = Thread(target=run)
-    t1.start()
-    ts.start()
+    while True:
+        try:
+            friend = input('请输入好友昵称：')
+            info = itchat.search_friends(nickName=friend)
+            id = info[0]['UserName']
+            t1 = Thread(target=send)
+            ts = Thread(target=run)
+            t1.start()
+            ts.start()
+         except:
+            print('昵称错误，请重新正确输入')
 
-    
-if _name_ == '_main_' :
-    
+if __name__ == '__main__':
     main()
