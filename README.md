@@ -20,7 +20,7 @@
 
 扫码登陆，输入需要加密聊天的对象的昵称即可开始自动加密聊天模式。
 
-windows64位操作系统可以直接到releases主页https://github.com/kay-cottage/WeChat_AES_Encode/releases 下载即可使用！
+windows64位操作系统可以直接到releases主页 https://github.com/kay-cottage/WeChat_AES_Encode/releases 下载即可使用！
 
 
 
